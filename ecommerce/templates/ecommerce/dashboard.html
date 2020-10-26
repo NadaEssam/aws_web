@@ -1,0 +1,110 @@
+{% extends 'ecommerce/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>USERS</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_user' %}">Create User</a>
+			<table class="table table-sm">
+				<tr>
+					<th>ID</th>
+					<th>User</th>
+					<th>Preference</th>
+				</tr>
+
+				{% for user in users %}
+					<tr>
+
+						<td>{{user.id}}</td>
+						<td>{{user.name}}</td>
+                        <td>{{user.Preference}}</td>
+                        <td><a href="{% url 'update_user' user.id %}">Update</a></td>
+						<td><a href="{% url 'delete_user' user.id %}">Delete</a></td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>PRODUCTS</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_product' %}">Create Product</a>
+			<table class="table table-sm">
+				<tr>
+					<th>ID</th>
+					<th>Product</th>
+					<th>Description</th>
+                    <th>Manufacturer Name</th>
+                    <th>Inventory Count</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for product in products %}
+					<tr>
+						<td>{{product.ID}}</td>
+						<td>{{product.name}}</td>
+						<td>{{product.description}}</td>
+                        <td>{{product.manufacturer_name}}</td>
+                        <td>{{product.inventory_count}}</td>
+						<td><a href="{% url 'update_product' product.id %}">Update</a></td>
+						<td><a href="{% url 'delete_product' product.id %}">Delete</a></td>
+
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+    </div>
+
+    <br>
+    
+    <div class="col-md-12">
+		<h5>ORDERS</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_order' %}">Create Order</a>
+			<table class="table table-sm">
+				<tr>
+					<th>Product ID</th>
+					<th>User ID</th>
+                    <th>Product Name</th>
+                    <th>User Name</th>
+                    <th>Quantity</th>
+                    <th>Date Of Purchase</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for order in product_bought %}
+					<tr>
+						<td>{{order.product_id}}</td>
+						<td>{{order.user_id}}</td>
+                        <td>{{order.product_name}}</td>
+                        <td>{{order.user_name}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>{{order.date_of_purchase}}</td>
+						<td><a href="{% url 'update_order' order.id %}">Update</a></td>
+						<td><a href="{% url 'delete_order' order.id %}">Delete</a></td>
+
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock %}
